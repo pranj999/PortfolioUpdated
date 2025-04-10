@@ -1,0 +1,10 @@
+name: portfolio-django
+
+services:
+  app:
+    image: protfolio-django
+    container_name: portfolio-container
+    ports:
+      - "8001:8000"
+    volumes:
+      - .:/app

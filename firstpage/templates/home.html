@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block meta_description %}Pranjal Patel - Computer Science professional specializing in data science and machine learning. View my portfolio, projects, and experience.{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="relative py-20 md:py-32 overflow-hidden">
+    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
+        <div class="md:w-1/2 mb-10 md:mb-0">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                <span class="block text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+                    Hello Universe!
+                </span>
+                <span class="text-white">I'm Pranjal</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-8">
+                Computer Science professional with passion for
+                <span class="text-teal-400">data science</span> and
+                <span class="text-teal-400">machine learning</span>.
+            </p>
+            <div class="flex flex-wrap gap-4">
+                <a href="#about" class="px-6 py-3 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-medium rounded-full transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Learn More
+                </a>
+                <a href="#contact" class="px-6 py-3 bg-transparent border-2 border-teal-500 text-teal-500 font-medium rounded-full transition-colors hover:bg-teal-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
+                    Get In Touch
+                </a>
+            </div>
+        </div>
+        <div class="md:w-2/5 flex justify-center">
+            <img src="{% static 'profile2.jpg' %}" alt="Pranjal Patel - Computer Science Professional" class="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover shadow-2xl border-4 border-teal-500" loading="eager">
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-20 bg-gray-100">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">
+            <span class="inline-block pb-2 border-b-4 border-red-500">About Me</span>
+        </h2>
+
+        <div class="flex flex-col md:flex-row items-center gap-10">
+            <div class="md:w-1/3">
+                <img src="{% static 'profile.jpg' %}" alt="Pranjal Patel portrait photo" class="rounded-lg shadow-xl w-full h-auto" loading="lazy">
+            </div>
+
+            <div class="md:w-2/3">
+                <p class="text-lg md:text-xl text-gray-700 mb-6">
+                    I was born in the city of Anand in Gujarat, India. My journey has taken me far from home, from high school in a different city to my Bachelor's in Chennai, and now pursuing my Master's in the United States.
+                </p>
+                <p class="text-lg md:text-xl text-gray-700 mb-6">
+                    Each step of this journey has been an opportunity to learn and grow. Living away from home hasn't distanced me from my parents but has deepened my respect and appreciation for them and their unwavering support throughout my life.
+                </p>
+                <p class="text-lg md:text-xl text-gray-700">
+                    I'm passionate about programming and constantly seeking new challenges. This website itself represents one of my projects, built to expand my web development skills.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section class="py-20 bg-gray-900 text-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">
+            <span class="inline-block pb-2 border-b-4 border-teal-500">Skills & Technologies</span>
+        </h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- Skill items -->
+            <div class="bg-gray-800 rounded-lg p-6 text-center hover:bg-gray-700 transition-colors">
+                <div class="text-4xl mb-4 text-teal-400">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Programming</h3>
+                <p class="text-gray-300">Python, Java, C++</p>
+            </div>
+
+            <div class="bg-gray-800 rounded-lg p-6 text-center hover:bg-gray-700 transition-colors">
+                <div class="text-4xl mb-4 text-teal-400">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Data Science</h3>
+                <p class="text-gray-300">pandas, NumPy, SQL</p>
+            </div>
+
+            <div class="bg-gray-800 rounded-lg p-6 text-center hover:bg-gray-700 transition-colors">
+                <div class="text-4xl mb-4 text-teal-400">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Machine Learning</h3>
+                <p class="text-gray-300">TensorFlow, PyTorch, scikit-learn</p>
+            </div>
+
+            <div class="bg-gray-800 rounded-lg p-6 text-center hover:bg-gray-700 transition-colors">
+                <div class="text-4xl mb-4 text-teal-400">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Web Development</h3>
+                <p class="text-gray-300">Django, HTML, CSS, JavaScript</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">
+            <span class="inline-block pb-2 border-b-4 border-red-500">Featured Projects</span>
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Project Card -->
+            <div class="bg-gray-100 rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-105">
+                <div class="h-48 bg-gray-300 flex items-center justify-center">
+                    <i class="fas fa-code text-6xl text-gray-500"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Machine Learning Project</h3>
+                    <p class="text-gray-700 mb-4">A deep learning model for image classification using TensorFlow and Keras.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">Python, TensorFlow</span>
+                        <a href="https://github.com/pranj999" class="text-teal-500 hover:text-teal-700 font-medium flex items-center gap-1" target="_blank" rel="noopener noreferrer">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card -->
+            <div class="bg-gray-100 rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-105">
+                <div class="h-48 bg-gray-300 flex items-center justify-center">
+                    <i class="fas fa-laptop text-6xl text-gray-500"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Data Visualization Dashboard</h3>
+                    <p class="text-gray-700 mb-4">Interactive data visualization dashboard using D3.js and React.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">JavaScript, D3.js, React</span>
+                        <a href="https://github.com/pranj999" class="text-teal-500 hover:text-teal-700 font-medium flex items-center gap-1" target="_blank" rel="noopener noreferrer">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-10 text-center">
+            <a href="https://github.com/pranj999" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gray-800 text-white hover:bg-gray-700 transition-colors" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i>
+                View All Projects
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Resume Section -->
+<section class="py-20 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">Interested in my experience?</h2>
+        <p class="text-xl mb-8 max-w-2xl mx-auto">Check out my resume to learn more about my education, skills, and professional experience.</p>
+        <a href="https://github.com/pranj999/pranj999/blob/main/Pranjal_Patel_Resume.pdf"
+           class="inline-block px-8 py-4 bg-white text-pink-600 font-bold rounded-full shadow-lg hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white"
+           target="_blank" rel="noopener noreferrer">
+            Download Resume
+        </a>
+    </div>
+</section>
+
+<!-- Personal Interests -->
+<section class="py-20 bg-gray-100">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">
+            <span class="inline-block pb-2 border-b-4 border-red-500">Life Outside Work</span>
+        </h2>
+
+        <div class="flex flex-col md:flex-row items-center gap-10">
+            <div class="md:w-1/2">
+                <p class="text-lg md:text-xl text-gray-700 mb-6">
+                    When I'm not coding or studying, I enjoy exploring the outdoors through hiking and discovering new natural landscapes. These experiences help me disconnect and recharge.
+                </p>
+                <p class="text-lg md:text-xl text-gray-700 mb-6">
+                    I'm also an avid reader, enjoying a diverse range of fiction, non-fiction, and mangas. A good book can transport you to different worlds and perspectives.
+                </p>
+                <p class="text-lg md:text-xl text-gray-700">
+                    Gaming is my go-to activity to unwind and relax after a long day of work or study. It's a perfect way to exercise creativity and problem-solving in a fun context.
+                </p>
+            </div>
+
+            <div class="md:w-1/2">
+                <img src="{% static 'collage.jpg' %}" alt="Collage of Pranjal's interests and hobbies" class="rounded-lg shadow-xl w-full h-auto" loading="lazy">
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

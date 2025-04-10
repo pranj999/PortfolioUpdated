@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.png' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %} | Pranjal Patel</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="{% block meta_description %}Pranjal Patel - Computer Science professional specializing in data science and machine learning. View my portfolio, projects, and experience.{% endblock %}">
+    <link rel="canonical" href="{% block canonical_url %}https://yourportfolio.com{{ request.path }}{% endblock %}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{% block og_url %}https://yourportfolio.com{{ request.path }}{% endblock %}">
+    <meta property="og:title" content="{% block og_title %}{% block og_title_inner %}{% endblock %} | Pranjal Patel{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{% block meta_description %}{% endblock %}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{% static 'profile2.jpg' %}{% endblock %}">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@pranj999">
+    <meta name="twitter:title" content="{% block twitter_title %}{% block title %}{% endblock %} | Pranjal Patel{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}{% block meta_description %}{% endblock %}{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}{% static 'profile2.jpg' %}{% endblock %}">
+
+    <!-- Structured Data / Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Pranjal Patel",
+      "url": "https://yourportfolio.com",
+      "sameAs": [
+        "https://www.linkedin.com/in/pranj999/",
+        "https://twitter.com/pranj999",
+        "https://github.com/pranj999"
+      ],
+      "jobTitle": "Computer Science Professional",
+      "knowsAbout": ["Data Science", "Machine Learning", "Programming"]
+    }
+    </script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/main.min.css' %}">
+    <style>
+    .hidden {
+      display: none;
+    }
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+    </style>
+
+    <!-- For production, use a local compiled version of Tailwind instead of CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex flex-col min-h-screen">
+    <!-- Animated background -->
+    <div class="fixed inset-0 -z-1">
+        <canvas class="h-full w-full" id="canvas"></canvas>
+    </div>
+
+    <!-- Main content -->
+    <div class="relative z-10 flex flex-col min-h-screen">
+        <header>
+            {% include 'navbar.html' %}
+        </header>
+
+        <main class="flex-grow">
+            {% block content %}
+            {% endblock %}
+        </main>
+
+        <footer>
+            {% include 'footer.html' %}
+        </footer>
+    </div>
+
+    <!-- Back to top button -->
+    <button
+        onclick="moveToTop()"
+        id="move-to-top"
+        aria-label="Move to top of page"
+        class="fixed bottom-4 right-4 bg-gray-800 text-white p-3 rounded-full hidden shadow-lg hover:bg-gray-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+    >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+        <span class="visually-hidden">Move to Top</span>
+    </button>
+
+    <!-- JavaScript - Load at the end for better performance -->
+    <script src="{% static 'js/background.js' %}" defer></script>
+    <script src="{% static 'js/movetop.js' %}" defer></script>
+</body>
+</html>

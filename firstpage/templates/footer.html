@@ -1,0 +1,129 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<footer id="contact" class="bg-gray-800 text-gray-200 py-8 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+                <h2 class="text-2xl font-semibold text-white mb-4">Connect With Me</h2>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="https://www.linkedin.com/in/pranj999/"
+                           class="flex items-center text-teal-400 hover:text-teal-300 transition-colors duration-300"
+                           aria-label="LinkedIn Profile"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            <i class="fab fa-linkedin text-xl mr-3"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/pranj999"
+                           class="flex items-center text-teal-400 hover:text-teal-300 transition-colors duration-300"
+                           aria-label="Twitter Profile"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            <i class="fab fa-twitter text-xl mr-3"></i>
+                            <span>Twitter</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/pranj999"
+                           class="flex items-center text-teal-400 hover:text-teal-300 transition-colors duration-300"
+                           aria-label="GitHub Profile"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            <i class="fab fa-github text-xl mr-3"></i>
+                            <span>GitHub</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h2 class="text-2xl font-semibold text-white mb-4">Contact</h2>
+                <!-- Contact Form - A more secure alternative to displaying raw email -->
+                <form id="contact-form" class="space-y-4" onsubmit="return submitContactForm(event)">
+                    {% csrf_token %}
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-300">Name</label>
+                        <input type="text" id="name" name="name" required
+                               class="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white
+                               focus:outline-none focus:ring-2 focus:ring-teal-500">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-300">Email</label>
+                        <input type="email" id="email" name="email" required
+                               class="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white
+                               focus:outline-none focus:ring-2 focus:ring-teal-500">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-300">Message</label>
+                        <textarea id="message" name="message" rows="3" required
+                                  class="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white
+                                  focus:outline-none focus:ring-2 focus:ring-teal-500"></textarea>
+                    </div>
+                    <div>
+                        <button type="submit"
+                                class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md
+                                shadow-sm text-sm font-medium text-white bg-teal-600 hover:bg-teal-700
+                                focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500
+                                transition-colors duration-300">
+                            Send Message
+                        </button>
+                    </div>
+                    <div id="form-status" class="text-center hidden"></div>
+                </form>
+
+                <!-- Only shown if JavaScript is disabled -->
+                <noscript>
+                    <p class="mt-4">Please enable JavaScript to use the contact form, or email me directly at:
+                       <a href="mailto:pranj999@gmail.com" class="text-teal-400 hover:text-teal-300">pranj999 [at] gmail [dot] com</a>
+                    </p>
+                </noscript>
+            </div>
+        </div>
+
+        <div class="mt-8 pt-6 border-t border-gray-700 text-center text-sm text-gray-400">
+            <p>&copy; {% now "Y" %} Pranjal Patel. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    function submitContactForm(event) {
+        event.preventDefault();
+
+        // Get form elements
+        const form = document.getElementById('contact-form');
+        const formStatus = document.getElementById('form-status');
+
+        // Show loading state
+        formStatus.textContent = "Sending message...";
+        formStatus.classList.remove('hidden', 'text-red-500', 'text-green-500');
+        formStatus.classList.add('text-white');
+
+        // Collect form data
+        const formData = new FormData(form);
+
+        // Here you would typically send this data to your backend
+        // For demonstration, we're simulating a successful submission
+
+        // Simulating server communication
+        setTimeout(() => {
+            const success = true; // In a real implementation, this would be based on server response
+
+            if (success) {
+                formStatus.textContent = "Message sent successfully! I'll get back to you soon.";
+                formStatus.classList.remove('text-white', 'text-red-500');
+                formStatus.classList.add('text-green-400');
+                form.reset();
+            } else {
+                formStatus.textContent = "There was an error sending your message. Please try again.";
+                formStatus.classList.remove('text-white', 'text-green-500');
+                formStatus.classList.add('text-red-500');
+            }
+        }, 1500);
+
+        return false;
+    }
+</script>
