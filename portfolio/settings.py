@@ -128,24 +128,37 @@ STATICFILES_DIRS =[
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 # Security settings
 SECURE_HSTS_SECONDS = 31536000  # 1 year
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
-SECURE_SSL_REDIRECT = True  # Set to False during local development
-SESSION_COOKIE_SECURE = True  # Set to False during local development
-CSRF_COOKIE_SECURE = True  # Set to False during local development
+SECURE_SSL_REDIRECT = False  # Changed to False for local development
+SESSION_COOKIE_SECURE = False  # Changed to False for local development
+CSRF_COOKIE_SECURE = False  # Changed to False for local development
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = 'DENY'
 
-# Content Security Policy
-CSP_DEFAULT_SRC = ("'self'",)
-CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", "https://cdn.tailwindcss.com", "https://cdnjs.cloudflare.com")
-CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'", "https://cdn.tailwindcss.com", "https://cdnjs.cloudflare.com")
-CSP_FONT_SRC = ("'self'", "https://cdnjs.cloudflare.com")
-CSP_IMG_SRC = ("'self'", "data:")
+# Content Security Policy - new format
+CONTENT_SECURITY_POLICY = {
+    'DIRECTIVES': {
+        'default-src': ("'self'",),
+        'font-src': ("'self'", 'https://cdnjs.cloudflare.com'),
+        'img-src': ("'self'", 'data:'),
+        'script-src': (
+            "'self'",
+            "'unsafe-inline'",
+            'https://cdn.tailwindcss.com',
+            'https://cdnjs.cloudflare.com'
+        ),
+        'style-src': (
+            "'self'",
+            "'unsafe-inline'",
+            'https://cdn.tailwindcss.com',
+            'https://cdnjs.cloudflare.com'
+        )
+    }
+}
 
 # Email settings for contact form
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
