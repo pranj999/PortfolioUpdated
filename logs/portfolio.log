@@ -128,3 +128,43 @@ WARNING 2025-04-12 01:03:16,657 basehttp "GET /static/css/main.min.css HTTP/1.1"
 INFO 2025-04-12 01:03:17,613 basehttp "GET / HTTP/1.1" 200 61393
 WARNING 2025-04-12 01:03:17,682 basehttp "GET /static/css/main.min.css HTTP/1.1" 404 1862
 INFO 2025-04-12 01:12:21,312 basehttp "GET / HTTP/1.1" 200 61379
+INFO 2025-04-12 01:19:14,170 basehttp "GET / HTTP/1.1" 200 62716
+INFO 2025-04-12 01:22:35,449 basehttp "GET / HTTP/1.1" 200 62719
+INFO 2025-04-12 01:24:56,192 basehttp "GET / HTTP/1.1" 200 62001
+INFO 2025-04-15 01:35:42,592 autoreload Watching for file changes with StatReloader
+INFO 2025-04-15 01:35:45,645 basehttp code 400, message Bad request version ('Â\x16H\x12dôz=Õ')
+ERROR 2025-04-15 01:35:45,646 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-04-15 01:35:45,649 basehttp code 400, message Bad request version ('ÚÚ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x063\x8a\x8a\x00\x00\x00')
+ERROR 2025-04-15 01:35:45,649 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-04-15 01:36:11,989 basehttp code 400, message Bad request version ('JJ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06SJJ\x00\x00\x00#\x00\x00\x00')
+ERROR 2025-04-15 01:36:11,990 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-04-15 01:36:11,994 basehttp code 400, message Bad request version ('¼')
+ERROR 2025-04-15 01:36:11,994 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-04-15 01:36:24,579 basehttp code 400, message Bad request version ('\x00\x02\x01\x00DÍ\x00\x05\x00\x03\x02h2\x00')
+ERROR 2025-04-15 01:36:24,580 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-04-15 01:36:24,583 basehttp code 400, message Bad request version ('x}')
+ERROR 2025-04-15 01:36:24,583 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-04-15 01:36:33,496 basehttp "GET / HTTP/1.1" 200 61649
+INFO 2025-04-15 01:36:33,708 basehttp "GET /static/js/movetop.js HTTP/1.1" 200 3321
+WARNING 2025-04-15 01:36:33,756 basehttp "GET /static/js/animations.js HTTP/1.1" 404 1862
+INFO 2025-04-15 01:37:48,591 basehttp "GET / HTTP/1.1" 200 62001
+INFO 2025-04-15 01:37:48,641 basehttp "GET /static/js/movetop.js HTTP/1.1" 200 2177
+INFO 2025-04-15 02:17:25,982 basehttp "GET / HTTP/1.1" 200 65128
+INFO 2025-04-15 02:17:26,086 basehttp "GET /static/js/movetop.js HTTP/1.1" 200 3581
+WARNING 2025-04-15 02:17:26,093 basehttp "GET /static/js/animations.js HTTP/1.1" 404 1862
+INFO 2025-04-15 02:23:47,700 basehttp "GET / HTTP/1.1" 200 68400
+INFO 2025-04-15 02:23:47,804 basehttp "GET /static/js/movetop.js HTTP/1.1" 304 0
+WARNING 2025-04-15 02:23:47,822 basehttp "GET /static/js/animations.js HTTP/1.1" 404 1862
+INFO 2025-04-15 02:24:11,505 basehttp "GET / HTTP/1.1" 200 68400
+WARNING 2025-04-15 02:24:11,643 basehttp "GET /static/js/animations.js HTTP/1.1" 404 1862
+INFO 2025-04-15 02:24:15,468 basehttp "GET / HTTP/1.1" 200 68400
+WARNING 2025-04-15 02:24:15,565 basehttp "GET /static/js/animations.js HTTP/1.1" 404 1862
+INFO 2025-04-15 02:24:30,555 basehttp "GET / HTTP/1.1" 200 68400
+INFO 2025-04-15 02:24:30,635 basehttp "GET /static/js/movetop.js HTTP/1.1" 304 0
+WARNING 2025-04-15 02:24:30,657 basehttp "GET /static/js/animations.js HTTP/1.1" 404 1862
+INFO 2025-04-15 02:26:21,864 basehttp "GET / HTTP/1.1" 200 74610
+INFO 2025-04-15 02:26:21,971 basehttp "GET /static/js/movetop.js HTTP/1.1" 304 0
+WARNING 2025-04-15 02:26:21,986 basehttp "GET /static/js/animations.js HTTP/1.1" 404 1862
+INFO 2025-04-15 02:27:38,327 basehttp "GET / HTTP/1.1" 200 74610
+WARNING 2025-04-15 02:27:38,455 basehttp "GET /static/js/animations.js HTTP/1.1" 404 1862
+INFO 2025-04-15 02:27:38,456 basehttp "GET /static/js/movetop.js HTTP/1.1" 200 3581
