@@ -6,7 +6,7 @@ class StaticViewSitemap(Sitemap):
     changefreq = 'monthly'
 
     def items(self):
-        return ['home']  # Add all your static view names here
+        return ['home', 'projects', 'resume', 'contact']  # Add all your static view names here
 
     def location(self, item):
         return reverse(item)

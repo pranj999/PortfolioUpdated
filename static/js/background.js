@@ -71,9 +71,9 @@ function start() {
         stars = [],
         shootingStars = [],
         layers = [
-            { speed: 0.015, scale: 0.2, count: 320 },
-            { speed: 0.03, scale: 0.5, count: 50 },
-            { speed: 0.05, scale: 0.75, count: 30 }
+            { speed: 0.01, scale: 0.2, count: 160 },  // Reduced count and speed
+            { speed: 0.02, scale: 0.5, count: 25 },   // Reduced count and speed
+            { speed: 0.03, scale: 0.75, count: 15 }  // Reduced count and speed
         ],
         starsAngle = 145,
         shootingStarSpeed = {
@@ -119,6 +119,8 @@ function start() {
         }, shootingStarLifeTime);
     }
 
+    // Optimize render by using requestAnimationFrame efficiently
+    let animationFrameId;
     function update() {
         if (!paused) {
             context.clearRect(0, 0, width, height);
@@ -175,7 +177,7 @@ function start() {
                 }
             }
         }
-        requestAnimationFrame(update);
+        animationFrameId = requestAnimationFrame(update);
     }
 
     function drawStar(star) {
@@ -242,6 +244,7 @@ function start() {
 
     window.onblur = function () {
       paused = true;
+      cancelAnimationFrame(animationFrameId); // Cancel animation when tab not visible
     };
 
 }

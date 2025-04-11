@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from django.views.decorators.http import require_http_methods
 
@@ -12,7 +12,8 @@ def home(request):
     """
     context = {
         'is_home': True,
-        'page_title': 'Home'
+        'page_title': 'Home',
+        'meta_description': 'Pranjal Patel - Computer Science professional specializing in data science and machine learning. View my portfolio, projects, and experience.'
     }
     return render(request, 'home.html', context)
 
@@ -21,15 +22,21 @@ def handler404(request, exception=None):
     """
     Custom 404 error handler
     """
-    return render(request, '404.html', status=404)
+    context = {
+        'meta_description': 'Sorry, the page you are looking for does not exist. Return to the Pranjal Patel\'s portfolio homepage.'
+    }
+    return render(request, '404.html', context, status=404)
 
 
 def handler500(request):
     """
     Custom 500 error handler
     """
+    context = {
+        'meta_description': 'We\'re experiencing some technical difficulties. Please try again later.'
+    }
     template = loader.get_template('500.html')
-    return HttpResponse(template.render({}, request), status=500)
+    return HttpResponse(template.render(context, request), status=500)
 
 
 @require_http_methods(["POST"])
