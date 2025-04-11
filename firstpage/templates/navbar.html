@@ -1,10 +1,10 @@
 {% load static %}
 
-<nav id="navbar" class="sticky top-0 bg-gray-900 bg-opacity-90 backdrop-filter backdrop-blur-lg shadow-md flex items-center justify-between px-4 sm:px-8 py-4 z-50 transition-all duration-300">
+<nav id="navbar" class="sticky top-0 bg-gray-900 dark:bg-gray-900 bg-opacity-90 backdrop-filter backdrop-blur-lg shadow-lg flex items-center justify-between px-4 sm:px-8 py-4 z-50 transition-all duration-300">
     <!-- Logo and Heading -->
     <div class="flex items-center space-x-4">
-        <img src="{% static 'favicon1.png' %}" alt="Pranjal Patel Logo" class="w-8 h-8">
-        <h1 class="font-medium text-teal-500 text-xl hover:text-red-500 transition-colors duration-300">
+        <img src="{% static 'favicon1.png' %}" alt="Pranjal Patel Logo" class="w-8 h-8 rounded-full shadow-md hover:shadow-lg transition-all duration-300">
+        <h1 class="font-semibold text-teal-400 text-xl hover:text-teal-300 transition-colors duration-300">
             <a href="/" aria-label="Pranjal Patel Home Page">Pranjal Patel</a>
         </h1>
     </div>
@@ -17,19 +17,27 @@
     </button>
 
     <!-- Desktop Links -->
-    <div class="hidden md:flex items-center space-x-6">
-        <a href="/" class="text-teal-500 hover:text-red-500 hover:underline underline-offset-4 transition-colors duration-300 font-medium" aria-current="page">Home</a>
-        <a href="#about" class="text-teal-500 hover:text-red-500 hover:underline underline-offset-4 transition-colors duration-300 font-medium">About</a>
-        <a href="#projects" class="text-teal-500 hover:text-red-500 hover:underline underline-offset-4 transition-colors duration-300 font-medium">Projects</a>
-        <a href="#contact" class="text-teal-500 hover:text-red-500 hover:underline underline-offset-4 transition-colors duration-300 font-medium">Contact</a>
+    <div class="hidden md:flex items-center space-x-8">
+        <a href="/" class="relative text-teal-400 hover:text-teal-300 transition-colors duration-300 font-medium group py-2" aria-current="page">Home
+            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-teal-400 group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a href="#about" class="relative text-teal-400 hover:text-teal-300 transition-colors duration-300 font-medium group py-2">About
+            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-teal-400 group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a href="#projects" class="relative text-teal-400 hover:text-teal-300 transition-colors duration-300 font-medium group py-2">Projects
+            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-teal-400 group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a href="#contact" class="relative text-teal-400 hover:text-teal-300 transition-colors duration-300 font-medium group py-2">Contact
+            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-teal-400 group-hover:w-full transition-all duration-300"></span>
+        </a>
     </div>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden absolute top-full left-0 right-0 bg-gray-900 bg-opacity-95 shadow-lg p-4 flex flex-col space-y-4 md:hidden">
-        <a href="/" class="text-teal-500 hover:text-red-500 hover:underline underline-offset-4 transition-colors duration-300 font-medium py-2">Home</a>
-        <a href="#about" class="text-teal-500 hover:text-red-500 hover:underline underline-offset-4 transition-colors duration-300 font-medium py-2">About</a>
-        <a href="#projects" class="text-teal-500 hover:text-red-500 hover:underline underline-offset-4 transition-colors duration-300 font-medium py-2">Projects</a>
-        <a href="#contact" class="text-teal-500 hover:text-red-500 hover:underline underline-offset-4 transition-colors duration-300 font-medium py-2">Contact</a>
+    <div id="mobile-menu" class="hidden absolute top-full left-0 right-0 bg-gray-900 bg-opacity-95 shadow-xl rounded-b-lg p-6 flex flex-col space-y-4 md:hidden">
+        <a href="/" class="text-teal-400 hover:text-teal-300 transition-colors duration-300 font-medium py-3 border-b border-gray-800">Home</a>
+        <a href="#about" class="text-teal-400 hover:text-teal-300 transition-colors duration-300 font-medium py-3 border-b border-gray-800">About</a>
+        <a href="#projects" class="text-teal-400 hover:text-teal-300 transition-colors duration-300 font-medium py-3 border-b border-gray-800">Projects</a>
+        <a href="#contact" class="text-teal-400 hover:text-teal-300 transition-colors duration-300 font-medium py-3">Contact</a>
     </div>
 </nav>
 
