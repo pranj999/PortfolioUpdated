@@ -1,247 +1,179 @@
-"use strict";
-window.onload = function() {
-    setTimeout(start, 200);
-};
+document.addEventListener('DOMContentLoaded', function() {
+    const canvas = document.getElementById('canvas');
+    if (!canvas) return;
 
-function start() {
-
-    //Helpers
-    function lineToAngle(x1, y1, length, radians) {
-        var x2 = x1 + length * Math.cos(radians),
-            y2 = y1 + length * Math.sin(radians);
-        return { x: x2, y: y2 };
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let particleCount = 0;
+    
+    // Set responsive canvas size
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        // Adjust particle count based on screen size
+        particleCount = Math.floor((canvas.width * canvas.height) / 10000);
+        if (particleCount > 100) particleCount = 100; // Cap at 100 particles
+        
+        // Re-initialize particles
+        initParticles();
     }
-
-    function randomRange(min, max) {
-        return min + Math.random() * (max - min);
-    }
-
-    function degreesToRads(degrees) {
-        return degrees / 180 * Math.PI;
-    }
-
-    //Particle
-    var particle = {
-        x: 0,
-        y: 0,
-        vx: 0,
-        vy: 0,
-        radius: 0,
-
-        create: function(x, y, speed, direction) {
-            var obj = Object.create(this);
-            obj.x = x;
-            obj.y = y;
-            obj.vx = Math.cos(direction) * speed;
-            obj.vy = Math.sin(direction) * speed;
-            return obj;
-        },
-
-        getSpeed: function() {
-            return Math.sqrt(this.vx * this.vx + this.vy * this.vy);
-        },
-
-        setSpeed: function(speed) {
-            var heading = this.getHeading();
-            this.vx = Math.cos(heading) * speed;
-            this.vy = Math.sin(heading) * speed;
-        },
-
-        getHeading: function() {
-            return Math.atan2(this.vy, this.vx);
-        },
-
-        setHeading: function(heading) {
-            var speed = this.getSpeed();
-            this.vx = Math.cos(heading) * speed;
-            this.vy = Math.sin(heading) * speed;
-        },
-
-        update: function() {
-            this.x += this.vx;
-            this.y += this.vy;
-        }
-    };
-
-    //Canvas and settings
-    var canvas = document.getElementById("canvas"),
-        context = canvas.getContext("2d"),
-        width = canvas.width = window.innerWidth,
-        height = canvas.height = window.innerHeight,
-        stars = [],
-        shootingStars = [],
-        layers = [
-            { speed: 0.015, scale: 0.2, count: 320 },
-            { speed: 0.03, scale: 0.5, count: 50 },
-            { speed: 0.05, scale: 0.75, count: 30 }
-        ],
-        starsAngle = 145,
-        shootingStarSpeed = {
-            min: 15,
-            max: 20
-        },
-        shootingStarOpacityDelta = 0.01,
-        trailLengthDelta = 0.01,
-        shootingStarEmittingInterval = 2000,
-        shootingStarLifeTime = 500,
-        maxTrailLength = 300,
-        starBaseRadius = 2,
-        shootingStarRadius = 3,
-        paused = false;
-
-    //Create all stars
-    for (var j = 0; j < layers.length; j += 1) {
-        var layer = layers[j];
-        for (var i = 0; i < layer.count; i += 1) {
-            var star = particle.create(randomRange(0, width), randomRange(0, height), 0, 0);
-            star.radius = starBaseRadius * layer.scale;
-            star.setSpeed(layer.speed);
-            star.setHeading(degreesToRads(starsAngle));
-            stars.push(star);
+    
+    // Initialize particles
+    function initParticles() {
+        particles = [];
+        for (let i = 0; i < particleCount; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 2 + 1,
+                color: getRandomColor(),
+                speedX: Math.random() * 0.5 - 0.25,
+                speedY: Math.random() * 0.5 - 0.25,
+                connections: []
+            });
         }
     }
-
-    function createShootingStar() {
-        var shootingStar = particle.create(randomRange(width / 2, width), randomRange(0, height / 2), 0, 0);
-        shootingStar.setSpeed(randomRange(shootingStarSpeed.min, shootingStarSpeed.max));
-        shootingStar.setHeading(degreesToRads(starsAngle));
-        shootingStar.radius = shootingStarRadius;
-        shootingStar.opacity = 0;
-        shootingStar.trailLengthDelta = 0;
-        shootingStar.isSpawning = true;
-        shootingStar.isDying = false;
-        shootingStars.push(shootingStar);
+    
+    // Generate a random color with teal theme
+    function getRandomColor() {
+        const r = Math.floor(Math.random() * 50);
+        const g = Math.floor(Math.random() * 100 + 155); // Higher green for teal
+        const b = Math.floor(Math.random() * 100 + 155); // Higher blue for teal
+        const a = Math.random() * 0.3 + 0.1; // Low opacity
+        return `rgba(${r}, ${g}, ${b}, ${a})`;
     }
-
-    function killShootingStar(shootingStar) {
-        setTimeout(function() {
-            shootingStar.isDying = true;
-        }, shootingStarLifeTime);
-    }
-
-    function update() {
-        if (!paused) {
-            context.clearRect(0, 0, width, height);
-            context.fillStyle = "#282a3a";
-            context.fillRect(0, 0, width, height);
-            context.fill();
-
-            for (var i = 0; i < stars.length; i += 1) {
-                var star = stars[i];
-                star.update();
-                drawStar(star);
-                if (star.x > width) {
-                    star.x = 0;
-                }
-                if (star.x < 0) {
-                    star.x = width;
-                }
-                if (star.y > height) {
-                    star.y = 0;
-                }
-                if (star.y < 0) {
-                    star.y = height;
-                }
-            }
-
-            for (i = 0; i < shootingStars.length; i += 1) {
-                var shootingStar = shootingStars[i];
-                if (shootingStar.isSpawning) {
-                    shootingStar.opacity += shootingStarOpacityDelta;
-                    if (shootingStar.opacity >= 1.0) {
-                        shootingStar.isSpawning = false;
-                        killShootingStar(shootingStar);
+    
+    // Animation loop
+    function animate() {
+        // Only clear a portion of the canvas for trailing effect
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.02)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Update and draw particles
+        for (let i = 0; i < particles.length; i++) {
+            let p = particles[i];
+            
+            // Move particles
+            p.x += p.speedX;
+            p.y += p.speedY;
+            
+            // Bounce off edges
+            if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+            if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+            
+            // Draw particle
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fillStyle = p.color;
+            ctx.fill();
+            
+            // Draw connections
+            p.connections = [];
+            for (let j = 0; j < particles.length; j++) {
+                if (i !== j) {
+                    const p2 = particles[j];
+                    const distance = Math.sqrt(Math.pow(p.x - p2.x, 2) + Math.pow(p.y - p2.y, 2));
+                    const maxDistance = 150;
+                    
+                    if (distance < maxDistance) {
+                        p.connections.push(j);
+                        
+                        // Draw line with gradient opacity based on distance
+                        const opacity = 1 - (distance / maxDistance);
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = `rgba(0, 180, 180, ${opacity * 0.2})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
                     }
                 }
-                if (shootingStar.isDying) {
-                    shootingStar.opacity -= shootingStarOpacityDelta;
-                    if (shootingStar.opacity <= 0.0) {
-                        shootingStar.isDying = false;
-                        shootingStar.isDead = true;
-                    }
-                }
-                shootingStar.trailLengthDelta += trailLengthDelta;
-
-                shootingStar.update();
-                if (shootingStar.opacity > 0.0) {
-                    drawShootingStar(shootingStar);
-                }
-            }
-
-            //Delete dead shooting shootingStars
-            for (i = shootingStars.length -1; i >= 0 ; i--){
-                if (shootingStars[i].isDead){
-                    shootingStars.splice(i, 1);
-                }
             }
         }
-        requestAnimationFrame(update);
+        
+        requestAnimationFrame(animate);
     }
-
-    function drawStar(star) {
-        context.fillStyle = "rgb(255, 221, 157)";
-        context.beginPath();
-        context.arc(star.x, star.y, star.radius, 0, Math.PI * 2, false);
-        context.fill();
-    }
-
-    function drawShootingStar(p) {
-        var x = p.x,
-            y = p.y,
-            currentTrailLength = (maxTrailLength * p.trailLengthDelta),
-            pos = lineToAngle(x, y, -currentTrailLength, p.getHeading());
-
-        context.fillStyle = "rgba(255, 255, 255, " + p.opacity + ")";
-        // context.beginPath();
-        // context.arc(x, y, p.radius, 0, Math.PI * 2, false);
-        // context.fill();
-        var starLength = 5;
-        context.beginPath();
-        context.moveTo(x - 1, y + 1);
-
-        context.lineTo(x, y + starLength);
-        context.lineTo(x + 1, y + 1);
-
-        context.lineTo(x + starLength, y);
-        context.lineTo(x + 1, y - 1);
-
-        context.lineTo(x, y + 1);
-        context.lineTo(x, y - starLength);
-
-        context.lineTo(x - 1, y - 1);
-        context.lineTo(x - starLength, y);
-
-        context.lineTo(x - 1, y + 1);
-        context.lineTo(x - starLength, y);
-
-        context.closePath();
-        context.fill();
-
-        //trail
-        context.fillStyle = "rgba(255, 221, 157, " + p.opacity + ")";
-        context.beginPath();
-        context.moveTo(x - 1, y - 1);
-        context.lineTo(pos.x, pos.y);
-        context.lineTo(x + 1, y + 1);
-        context.closePath();
-        context.fill();
-    }
-
-    //Run
-    update();
-
-    //Shooting stars
-    setInterval(function() {
-        if (paused) return;
-        createShootingStar();
-    }, shootingStarEmittingInterval);
-
-    window.onfocus = function () {
-      paused = false;
+    
+    // Handle mouse interaction
+    let mouse = {
+        x: null,
+        y: null,
+        radius: 150
     };
-
-    window.onblur = function () {
-      paused = true;
-    };
-
-}
+    
+    canvas.addEventListener('mousemove', function(e) {
+        mouse.x = e.x;
+        mouse.y = e.y;
+        
+        // Create ripple effect
+        for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            const distance = Math.sqrt(Math.pow(p.x - mouse.x, 2) + Math.pow(p.y - mouse.y, 2));
+            
+            if (distance < mouse.radius) {
+                const angle = Math.atan2(p.y - mouse.y, p.x - mouse.x);
+                const force = (mouse.radius - distance) / mouse.radius;
+                
+                p.speedX += Math.cos(angle) * force * 0.2;
+                p.speedY += Math.sin(angle) * force * 0.2;
+                
+                // Add some dampening to prevent excessive speed
+                p.speedX *= 0.95;
+                p.speedY *= 0.95;
+            }
+        }
+    });
+    
+    // Handle touch interaction for mobile
+    canvas.addEventListener('touchmove', function(e) {
+        e.preventDefault();
+        const touch = e.touches[0];
+        mouse.x = touch.clientX;
+        mouse.y = touch.clientY;
+    });
+    
+    // Initialize and start animation
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    animate();
+    
+    // Reduce animation on low-power devices or when tab is not visible
+    let isLowPower = false;
+    
+    // Check if browser supports battery API
+    if ('getBattery' in navigator) {
+        navigator.getBattery().then(function(battery) {
+            isLowPower = !battery.charging && battery.level < 0.2;
+            
+            battery.addEventListener('chargingchange', function() {
+                isLowPower = !battery.charging && battery.level < 0.2;
+                adjustAnimationQuality();
+            });
+            
+            battery.addEventListener('levelchange', function() {
+                isLowPower = !battery.charging && battery.level < 0.2;
+                adjustAnimationQuality();
+            });
+        });
+    }
+    
+    // Handle visibility change
+    document.addEventListener('visibilitychange', function() {
+        adjustAnimationQuality();
+    });
+    
+    function adjustAnimationQuality() {
+        if (document.hidden || isLowPower) {
+            // Reduce particle count when tab is not visible or on low power
+            particleCount = Math.floor(particleCount / 3);
+            if (particleCount < 10) particleCount = 10;
+        } else {
+            // Restore normal particle count
+            particleCount = Math.floor((canvas.width * canvas.height) / 10000);
+            if (particleCount > 100) particleCount = 100;
+        }
+        
+        initParticles();
+    }
+});

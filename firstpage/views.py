@@ -3,6 +3,13 @@ from django.views.generic import TemplateView
 from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from django.views.decorators.http import require_http_methods
+from django.core.mail import send_mail
+from django.conf import settings
+import json
+import logging
+
+# Set up logging
+logger = logging.getLogger(__name__)
 
 
 # Create your views here.
@@ -13,7 +20,7 @@ def home(request):
     context = {
         'is_home': True,
         'page_title': 'Home',
-        'meta_description': 'Pranjal Patel - Computer Science professional specializing in data science and machine learning. View my portfolio, projects, and experience.'
+        'meta_description': 'Pranjal Patel - Data Analyst with expertise in SQL, Python, and data visualization tools like Tableau and Looker Studio.'
     }
     return render(request, 'home.html', context)
 
@@ -43,11 +50,7 @@ def handler500(request):
 def contact_form(request):
     """
     Handle contact form submissions.
-    This is a simple implementation. For production, consider using:
-    - Form validation with Django forms
-    - CSRF protection (already included in Django)
-    - Email sending with proper error handling
-    - Rate limiting to prevent spam
+    This sends an email to the site owner and returns a JSON response.
     """
     if request.method == 'POST':
         name = request.POST.get('name', '')
@@ -58,11 +61,39 @@ def contact_form(request):
         if not all([name, email, message]):
             return JsonResponse({'success': False, 'error': 'All fields are required'}, status=400)
 
+        if len(message) < 10:
+            return JsonResponse({'success': False, 'error': 'Message is too short'}, status=400)
+
         try:
-            # Here you would typically send an email
-            # For demo purposes, we'll just return success
-            # send_mail(...)
+            # Prepare email
+            subject = f"Portfolio Contact: {name}"
+            email_message = f"""
+            You have received a new message from your portfolio website:
+
+            Name: {name}
+            Email: {email}
+
+            Message:
+            {message}
+            """
+            from_email = settings.DEFAULT_FROM_EMAIL
+            recipient_list = [settings.CONTACT_EMAIL]  # This should be defined in settings.py
+
+            # Send email
+            send_mail(
+                subject,
+                email_message,
+                from_email,
+                recipient_list,
+                fail_silently=False,
+            )
+
+            # Log successful submission
+            logger.info(f"Contact form submitted by {email}")
 
             return JsonResponse({'success': True})
+
         except Exception as e:
-            return JsonResponse({'success': False, 'error': str(e)}, status=500)
+            # Log the error
+            logger.error(f"Contact form error: {str(e)}")
+            return JsonResponse({'success': False, 'error': 'There was an error sending your message'}, status=500)

@@ -101,7 +101,36 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+
+    <style>
+    /* Additional styles for proper stacking context */
+    #navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 10000; /* Very high z-index */
+    }
+
+    /* These classes must have a lower z-index than navbar */
+    .relative.z-10,
+    [class*="z-"],
+    .backdrop-filter {
+        z-index: 1; /* Lower than navbar */
+    }
+
+    /* Add padding to account for fixed navbar */
+    main {
+        padding-top: 70px;
+    }
+
+    @media (max-width: 640px) {
+        main {
+            padding-top: 100px; /* More padding on mobile if navbar is taller */
+        }
+    }
+</style>
+
     <!-- Animation Styles -->
     <style>
       /* Scroll animations */
@@ -145,9 +174,9 @@
 
     <!-- Main content -->
     <div class="relative z-10 flex flex-col min-h-screen">
-        <header>
-            {% include 'navbar.html' %}
-        </header>
+
+        {% include 'navbar.html' %}
+
 
         <main class="flex-grow">
             {% block content %}

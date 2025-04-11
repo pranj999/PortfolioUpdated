@@ -2,7 +2,8 @@
 
 <footer id="contact" class="bg-gray-800 dark:bg-gray-900 text-gray-200 py-10 px-4 sm:px-6 lg:px-8 border-t-4 border-teal-400 dark:border-teal-600 shadow-inner">
     <div class="max-w-6xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Connect -->
             <div class="animate-on-scroll">
                 <h2 class="text-2xl font-semibold text-white mb-4 inline-block border-b-2 border-teal-400 pb-2">Connect With Me</h2>
                 <ul class="space-y-3">
@@ -37,11 +38,49 @@
                         </a>
                     </li>
                 </ul>
+                <div class="mt-6">
+                    <h3 class="text-xl font-semibold text-white mb-3">Location</h3>
+                    <p class="text-gray-300">
+                        <i class="fas fa-map-marker-alt mr-2 text-teal-400"></i> Iselin, New Jersey, USA
+                    </p>
+                </div>
             </div>
 
+            <!-- Quick Links -->
             <div class="animate-on-scroll">
-                <h2 class="text-2xl font-semibold text-white mb-4 inline-block border-b-2 border-teal-400 pb-2">Contact</h2>
-                <!-- Contact Form - A more secure alternative to displaying raw email -->
+                <h2 class="text-2xl font-semibold text-white mb-4 inline-block border-b-2 border-teal-400 pb-2">Quick Links</h2>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="#about" class="flex items-center text-teal-400 hover:text-teal-300 transition-all duration-300 transform hover:translate-x-1">
+                            <i class="fas fa-user-circle text-xl mr-3"></i>
+                            <span>About Me</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#experience" class="flex items-center text-teal-400 hover:text-teal-300 transition-all duration-300 transform hover:translate-x-1">
+                            <i class="fas fa-briefcase text-xl mr-3"></i>
+                            <span>Experience</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#projects" class="flex items-center text-teal-400 hover:text-teal-300 transition-all duration-300 transform hover:translate-x-1">
+                            <i class="fas fa-project-diagram text-xl mr-3"></i>
+                            <span>Projects</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#education" class="flex items-center text-teal-400 hover:text-teal-300 transition-all duration-300 transform hover:translate-x-1">
+                            <i class="fas fa-graduation-cap text-xl mr-3"></i>
+                            <span>Education</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="animate-on-scroll">
+                <h2 class="text-2xl font-semibold text-white mb-4 inline-block border-b-2 border-teal-400 pb-2">Contact Me</h2>
+                <!-- Contact Form -->
                 <form id="contact-form" class="space-y-4" onsubmit="return submitContactForm(event)">
                     {% csrf_token %}
                     <div>
@@ -85,6 +124,7 @@
 
         <div class="mt-8 pt-6 border-t border-gray-700 text-center text-sm text-gray-400">
             <p>&copy; {% now "Y" %} Pranjal Patel. All rights reserved.</p>
+            <p class="mt-2">Built with Django and Tailwind CSS</p>
         </div>
     </div>
 </footer>
@@ -105,24 +145,38 @@
         // Collect form data
         const formData = new FormData(form);
 
-        // Here you would typically send this data to your backend
-        // For demonstration, we're simulating a successful submission
-
-        // Simulating server communication
-        setTimeout(() => {
-            const success = true; // In a real implementation, this would be based on server response
-
-            if (success) {
+        // Send data to the backend
+        fetch('/contact/submit/', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
                 formStatus.textContent = "Message sent successfully! I'll get back to you soon.";
                 formStatus.classList.remove('text-white', 'text-red-500');
                 formStatus.classList.add('text-green-400');
                 form.reset();
             } else {
-                formStatus.textContent = "There was an error sending your message. Please try again.";
+                formStatus.textContent = data.error || "There was an error sending your message. Please try again.";
                 formStatus.classList.remove('text-white', 'text-green-500');
                 formStatus.classList.add('text-red-500');
             }
-        }, 1500);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            formStatus.textContent = "There was an error sending your message. Please try again.";
+            formStatus.classList.remove('text-white', 'text-green-500');
+            formStatus.classList.add('text-red-500');
+        });
 
         return false;
     }
