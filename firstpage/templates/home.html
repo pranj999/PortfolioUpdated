@@ -128,78 +128,122 @@
 </section>
 
 <!-- Experience Section (New) -->
-<section id="experience" class="py-20 bg-white dark:bg-gray-800 dark:text-gray-200 transition-colors duration-300">
-    <div class="container mx-auto px-4">
-        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center animate-on-scroll">
-            <span class="inline-block pb-2 border-b-4 border-teal-500 dark:border-teal-400">Professional Experience</span>
+{% load static %}
+
+<section id="experience" class="py-16 bg-gray-900 text-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-4xl font-bold mb-12 text-center">
+            <span class="inline-block pb-2 border-b-4 border-teal-500">Professional Experience</span>
         </h2>
 
-        <!-- Timeline component -->
-        <div class="relative">
-            <!-- Vertical line -->
-            <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-teal-500 dark:bg-teal-400"></div>
-
-            <!-- Experience Items -->
-            <div class="relative z-10">
-                <!-- Param Consulting -->
-                <div class="mb-16 flex justify-between items-center flex-col md:flex-row animate-on-scroll">
-                    <div class="md:w-5/12 mb-8 md:mb-0 md:pr-8 text-right order-1">
-                        <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                            <h3 class="text-2xl font-bold text-teal-600 dark:text-teal-400 mb-2">Business Data Analyst</h3>
-                            <h4 class="text-lg font-semibold mb-2">Param Consulting Services</h4>
-                            <p class="text-gray-500 dark:text-gray-400 mb-4">February 2023 – Present</p>
-                            <ul class="text-gray-700 dark:text-gray-300 list-disc list-inside space-y-2">
-                                <li>Led requirement gathering and documentation for internal website development</li>
-                                <li>Developed interactive Looker Studio dashboards, improving adoption by 25%</li>
-                                <li>Optimized data workflows using SQL and Excel VBA, reducing processing time by 30%</li>
-                                <li>Performed in-depth EDA to identify trends and performance insights</li>
-                            </ul>
-                        </div>
+        <!-- Business Data Analyst -->
+        <div class="mb-16 group">
+            <div class="flex flex-col lg:flex-row mb-4">
+                <!-- Left side: Date and Location -->
+                <div class="lg:w-1/4 mb-4 lg:mb-0">
+                    <div class="inline-block bg-teal-500/20 border-l-4 border-teal-500 pl-4 py-2">
+                        <h4 class="font-semibold text-teal-400">February 2023 – Present</h4>
+                        <p class="text-gray-400">Iselin, NJ</p>
                     </div>
-                    <div class="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center">
-                        <div class="bg-teal-500 dark:bg-teal-400 w-8 h-8 rounded-full border-4 border-white dark:border-gray-800"></div>
-                    </div>
-                    <div class="md:w-5/12 order-2 md:pl-8"></div>
                 </div>
 
-                <!-- Shift4 -->
-                <div class="mb-16 flex justify-between items-center flex-col md:flex-row animate-on-scroll">
-                    <div class="md:w-5/12 order-2 md:pl-8">
-                        <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                            <h3 class="text-2xl font-bold text-teal-600 dark:text-teal-400 mb-2">Data Analyst Intern</h3>
-                            <h4 class="text-lg font-semibold mb-2">Shift4</h4>
-                            <p class="text-gray-500 dark:text-gray-400 mb-4">June 2022 – August 2022</p>
-                            <ul class="text-gray-700 dark:text-gray-300 list-disc list-inside space-y-2">
-                                <li>Automated data verification process using SQL and Python</li>
-                                <li>Created visualizations and insights using Tableau</li>
-                                <li>Performed exploratory data analysis using R and presented findings</li>
-                            </ul>
-                        </div>
+                <!-- Right side: Job details -->
+                <div class="lg:w-3/4 bg-gray-800/70 border border-gray-700 rounded-lg p-6 backdrop-blur-sm shadow-lg transition-all duration-300 group-hover:shadow-teal-500/10 group-hover:border-gray-600">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4">
+                        <h3 class="text-2xl font-bold text-teal-400">Business Data Analyst</h3>
+                        <p class="text-lg text-gray-300 sm:text-right">Param Consulting Services</p>
                     </div>
-                    <div class="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center">
-                        <div class="bg-teal-500 dark:bg-teal-400 w-8 h-8 rounded-full border-4 border-white dark:border-gray-800"></div>
+                    <ul class="space-y-3 text-gray-300 mb-5">
+                        <li class="flex">
+                            <span class="text-teal-400 mr-3">▹</span>
+                            <span>Led requirement gathering and documentation for internal website development, improving project execution.</span>
+                        </li>
+                        <li class="flex">
+                            <span class="text-teal-400 mr-3">▹</span>
+                            <span>Developed interactive Looker Studio dashboards, increasing adoption by 25%.</span>
+                        </li>
+                        <li class="flex">
+                            <span class="text-teal-400 mr-3">▹</span>
+                            <span>Optimized data workflows using SQL and Excel VBA, reducing processing time by 30%.</span>
+                        </li>
+                    </ul>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-900 text-teal-400 px-3 py-1 rounded-md text-sm border border-teal-500/30">SQL</span>
+                        <span class="bg-gray-900 text-teal-400 px-3 py-1 rounded-md text-sm border border-teal-500/30">Excel VBA</span>
+                        <span class="bg-gray-900 text-teal-400 px-3 py-1 rounded-md text-sm border border-teal-500/30">Looker Studio</span>
                     </div>
-                    <div class="md:w-5/12 mb-8 md:mb-0 order-1 md:pr-8 text-right"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Analyst Intern -->
+        <div class="mb-16 group">
+            <div class="flex flex-col lg:flex-row mb-4">
+                <!-- Left side: Date and Location -->
+                <div class="lg:w-1/4 mb-4 lg:mb-0">
+                    <div class="inline-block bg-teal-500/20 border-l-4 border-teal-500 pl-4 py-2">
+                        <h4 class="font-semibold text-teal-400">June – August 2022</h4>
+                        <p class="text-gray-400">Allentown, PA</p>
+                    </div>
                 </div>
 
-                <!-- Invisible Fiction -->
-                <div class="mb-16 flex justify-between items-center flex-col md:flex-row animate-on-scroll">
-                    <div class="md:w-5/12 mb-8 md:mb-0 md:pr-8 text-right order-1">
-                        <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                            <h3 class="text-2xl font-bold text-teal-600 dark:text-teal-400 mb-2">Data Analyst</h3>
-                            <h4 class="text-lg font-semibold mb-2">Invisible Fiction</h4>
-                            <p class="text-gray-500 dark:text-gray-400 mb-4">February 2019 – May 2021</p>
-                            <ul class="text-gray-700 dark:text-gray-300 list-disc list-inside space-y-2">
-                                <li>Extracted and cleaned data using Python tools like Beautiful Soup and Scrapy</li>
-                                <li>Created comprehensive reports and visualizations using pandas, Matplotlib, and Seaborn</li>
-                                <li>Translated complex data into understandable narratives for stakeholders</li>
-                            </ul>
-                        </div>
+                <!-- Right side: Job details -->
+                <div class="lg:w-3/4 bg-gray-800/70 border border-gray-700 rounded-lg p-6 backdrop-blur-sm shadow-lg transition-all duration-300 group-hover:shadow-teal-500/10 group-hover:border-gray-600">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4">
+                        <h3 class="text-2xl font-bold text-teal-400">Data Analyst Intern</h3>
+                        <p class="text-lg text-gray-300 sm:text-right">Shift4</p>
                     </div>
-                    <div class="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center">
-                        <div class="bg-teal-500 dark:bg-teal-400 w-8 h-8 rounded-full border-4 border-white dark:border-gray-800"></div>
+                    <ul class="space-y-3 text-gray-300 mb-5">
+                        <li class="flex">
+                            <span class="text-teal-400 mr-3">▹</span>
+                            <span>Automated data verification process using SQL and Python.</span>
+                        </li>
+                        <li class="flex">
+                            <span class="text-teal-400 mr-3">▹</span>
+                            <span>Created visualizations and insights using Tableau.</span>
+                        </li>
+                    </ul>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-900 text-teal-400 px-3 py-1 rounded-md text-sm border border-teal-500/30">SQL</span>
+                        <span class="bg-gray-900 text-teal-400 px-3 py-1 rounded-md text-sm border border-teal-500/30">Python</span>
+                        <span class="bg-gray-900 text-teal-400 px-3 py-1 rounded-md text-sm border border-teal-500/30">Tableau</span>
                     </div>
-                    <div class="md:w-5/12 order-2 md:pl-8"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Analyst -->
+        <div class="group">
+            <div class="flex flex-col lg:flex-row mb-4">
+                <!-- Left side: Date and Location -->
+                <div class="lg:w-1/4 mb-4 lg:mb-0">
+                    <div class="inline-block bg-teal-500/20 border-l-4 border-teal-500 pl-4 py-2">
+                        <h4 class="font-semibold text-teal-400">February 2019 – May 2021</h4>
+                        <p class="text-gray-400">Gujarat, India</p>
+                    </div>
+                </div>
+
+                <!-- Right side: Job details -->
+                <div class="lg:w-3/4 bg-gray-800/70 border border-gray-700 rounded-lg p-6 backdrop-blur-sm shadow-lg transition-all duration-300 group-hover:shadow-teal-500/10 group-hover:border-gray-600">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4">
+                        <h3 class="text-2xl font-bold text-teal-400">Data Analyst</h3>
+                        <p class="text-lg text-gray-300 sm:text-right">Invisible Fiction</p>
+                    </div>
+                    <ul class="space-y-3 text-gray-300 mb-5">
+                        <li class="flex">
+                            <span class="text-teal-400 mr-3">▹</span>
+                            <span>Extracted and cleaned data using Python tools like Beautiful Soup and Scrapy.</span>
+                        </li>
+                        <li class="flex">
+                            <span class="text-teal-400 mr-3">▹</span>
+                            <span>Created comprehensive reports and visualizations using pandas, Matplotlib, and Seaborn.</span>
+                        </li>
+                    </ul>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-900 text-teal-400 px-3 py-1 rounded-md text-sm border border-teal-500/30">Python</span>
+                        <span class="bg-gray-900 text-teal-400 px-3 py-1 rounded-md text-sm border border-teal-500/30">Pandas</span>
+                        <span class="bg-gray-900 text-teal-400 px-3 py-1 rounded-md text-sm border border-teal-500/30">Data Visualization</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -347,70 +391,76 @@
 </section>
 
 <!-- Resume Section -->
-<section class="py-20 bg-gradient-to-r from-teal-600 via-blue-600 to-purple-700 text-white">
-    <div class="container mx-auto px-4 text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">Interested in my experience?</h2>
-        <p class="text-xl mb-8 max-w-2xl mx-auto">Check out my resume to learn more about my education, skills, and professional experience.</p>
-        <a href="https://github.com/pranj999/pranj999/blob/main/Pranjal_Patel_Resume.pdf"
-           class="inline-block px-8 py-4 bg-white text-teal-600 darkbg-gray-800 dark:text-teal-400 font-bold rounded-full shadow-xl hover:shadow-2xl transform hover:scale-105 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white dark:focus:ring-teal-400"
-           target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-file-download mr-2"></i>Download Resume
-        </a>
-    </div>
-</section>
+{% load static %}
 
-<!-- Testimonials Section (New) -->
-<section class="py-20 bg-white dark:bg-gray-800 dark:text-gray-200 transition-colors duration-300">
-    <div class="container mx-auto px-4">
-        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center animate-on-scroll">
-            <span class="inline-block pb-2 border-b-4 border-teal-500 dark:border-teal-400">Testimonials</span>
-        </h2>
+<section class="py-20 bg-gradient-to-b from-gray-900 to-gray-800 text-white" id="resume">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Interested in my experience?</h2>
 
-        <div class="grid md:grid-cols-2 gap-8">
-            <!-- Testimonial 1 -->
-            <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-6 shadow-lg relative animate-on-scroll">
-                <div class="absolute top-6 left-6 text-6xl text-teal-200 opacity-20">
-                    <i class="fas fa-quote-left"></i>
-                </div>
-                <div class="relative">
-                    <p class="text-gray-700 dark:text-gray-300 mb-6 italic">
-                        "Pranjal's data analysis skills are exceptional. His ability to transform complex data into actionable insights helped our team make strategic decisions that increased our efficiency by 20%."
-                    </p>
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 bg-teal-500 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
-                            JD
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-900 dark:text-white">John Doe</h4>
-                            <p class="text-teal-600 dark:text-teal-400">Project Manager, Param Consulting</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <p class="text-lg text-gray-300 mb-10">
+                Check out my resume to learn more about my education, skills, and professional experience.
+            </p>
 
-            <!-- Testimonial 2 -->
-            <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-6 shadow-lg relative animate-on-scroll">
-                <div class="absolute top-6 left-6 text-6xl text-teal-200 opacity-20">
-                    <i class="fas fa-quote-left"></i>
-                </div>
-                <div class="relative">
-                    <p class="text-gray-700 dark:text-gray-300 mb-6 italic">
-                        "Working with Pranjal was a great experience. His dashboard designs are not only visually appealing but also highly functional, making our data accessible to stakeholders at all levels."
-                    </p>
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 bg-teal-500 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
-                            JS
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-900 dark:text-white">Jane Smith</h4>
-                            <p class="text-teal-600 dark:text-teal-400">Data Team Lead, Shift4</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <style>
+                /* Custom button styles with gradient that changes on hover */
+                .resume-btn {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 1rem 2rem;
+                    font-weight: 700;
+                    border-radius: 0.5rem;
+                    background-image: linear-gradient(to right, #14b8a6, #2563eb);
+                    color: white;
+                    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
+                    position: relative;
+                    overflow: hidden;
+                    z-index: 1;
+                }
+
+                .resume-btn::before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background-image: linear-gradient(to right, #6366f1, #a855f7, #ec4899);
+                    z-index: -1;
+                    opacity: 0;
+                    transition: opacity 0.5s ease;
+                }
+
+                .resume-btn:hover {
+                    transform: scale(1.05);
+                    box-shadow: 0 10px 25px -5px rgba(20, 184, 166, 0.2), 0 8px 10px -6px rgba(20, 184, 166, 0.1);
+                }
+
+                .resume-btn:hover::before {
+                    opacity: 1;
+                }
+
+                .resume-btn svg {
+                    margin-right: 0.5rem;
+                    width: 1.25rem;
+                    height: 1.25rem;
+                }
+            </style>
+
+            <a href="https://github.com/pranj999/pranj999/blob/main/Pranjal_Patel_March2025.pdf"
+               class="resume-btn"
+               target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clip-rule="evenodd" />
+                </svg>
+                Download Resume
+            </a>
         </div>
     </div>
 </section>
+
 
 <!-- Personal Interests -->
 <section class="py-20 bg-gray-100 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-300">
