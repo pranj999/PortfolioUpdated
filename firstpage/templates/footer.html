@@ -1,55 +1,61 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-<footer id="contact" class="bg-gray-800 dark:bg-gray-900 text-gray-200 py-10 px-4 sm:px-6 lg:px-8 border-t-4 border-teal-400 dark:border-teal-600 shadow-inner">
+<footer class="bg-gray-800 dark:bg-gray-900 text-gray-200 py-16 px-4 sm:px-6 lg:px-8 border-t-4 border-teal-400 dark:border-teal-600 shadow-inner">
     <div class="max-w-6xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Connect -->
-            <div class="animate-on-scroll">
-                <h2 class="text-2xl font-semibold text-white mb-4 inline-block border-b-2 border-teal-400 pb-2">Connect With Me</h2>
-                <ul class="space-y-3">
-                    <li>
-                        <a href="https://www.linkedin.com/in/pranj999/"
-                           class="flex items-center text-teal-400 hover:text-teal-300 transition-all duration-300 transform hover:translate-x-1"
-                           aria-label="LinkedIn Profile"
-                           target="_blank"
-                           rel="noopener noreferrer">
-                            <i class="fab fa-linkedin text-xl mr-3"></i>
-                            <span>LinkedIn</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://twitter.com/pranj999"
-                           class="flex items-center text-teal-400 hover:text-teal-300 transition-all duration-300 transform hover:translate-x-1"
-                           aria-label="Twitter Profile"
-                           target="_blank"
-                           rel="noopener noreferrer">
-                            <i class="fab fa-twitter text-xl mr-3"></i>
-                            <span>Twitter</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://github.com/pranj999"
-                           class="flex items-center text-teal-400 hover:text-teal-300 transition-all duration-300 transform hover:translate-x-1"
-                           aria-label="GitHub Profile"
-                           target="_blank"
-                           rel="noopener noreferrer">
-                            <i class="fab fa-github text-xl mr-3"></i>
-                            <span>GitHub</span>
-                        </a>
-                    </li>
-                </ul>
-                <div class="mt-6">
-                    <h3 class="text-xl font-semibold text-white mb-3">Location</h3>
-                    <p class="text-gray-300">
-                        <i class="fas fa-map-marker-alt mr-2 text-teal-400"></i> Iselin, New Jersey, USA
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <!-- Left Column: Connect and Location -->
+            <div class="space-y-10">
+                <!-- Connect With Me -->
+                <div class="animate-on-scroll">
+                    <h2 class="text-2xl font-semibold text-white mb-6 inline-block border-b-2 border-teal-400 pb-2">Connect With Me</h2>
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="https://www.linkedin.com/in/pranj999/"
+                               class="flex items-center text-teal-400 hover:text-teal-300 transition-all duration-300 transform hover:translate-x-1"
+                               aria-label="LinkedIn Profile"
+                               target="_blank"
+                               rel="noopener noreferrer">
+                                <i class="fab fa-linkedin text-xl mr-3"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/pranj999"
+                               class="flex items-center text-teal-400 hover:text-teal-300 transition-all duration-300 transform hover:translate-x-1"
+                               aria-label="Twitter Profile"
+                               target="_blank"
+                               rel="noopener noreferrer">
+                                <i class="fab fa-twitter text-xl mr-3"></i>
+                                <span>Twitter</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/pranj999"
+                               class="flex items-center text-teal-400 hover:text-teal-300 transition-all duration-300 transform hover:translate-x-1"
+                               aria-label="GitHub Profile"
+                               target="_blank"
+                               rel="noopener noreferrer">
+                                <i class="fab fa-github text-xl mr-3"></i>
+                                <span>GitHub</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Location -->
+                <div class="animate-on-scroll">
+                    <h2 class="text-2xl font-semibold text-white mb-6 inline-block border-b-2 border-teal-400 pb-2">Location</h2>
+                    <p class="text-gray-300 flex items-center">
+                        <i class="fas fa-map-marker-alt text-xl text-teal-400 mr-3"></i>
+                        <span>Iselin, New Jersey, USA</span>
                     </p>
                 </div>
             </div>
 
-            <!-- Quick Links -->
+            <!-- Right Column: Quick Links -->
             <div class="animate-on-scroll">
-                <h2 class="text-2xl font-semibold text-white mb-4 inline-block border-b-2 border-teal-400 pb-2">Quick Links</h2>
-                <ul class="space-y-3">
+                <h2 class="text-2xl font-semibold text-white mb-6 inline-block border-b-2 border-teal-400 pb-2">Quick Links</h2>
+                <ul class="space-y-4">
                     <li>
                         <a href="#about" class="flex items-center text-teal-400 hover:text-teal-300 transition-all duration-300 transform hover:translate-x-1">
                             <i class="fas fa-user-circle text-xl mr-3"></i>
@@ -76,108 +82,12 @@
                     </li>
                 </ul>
             </div>
-
-            <!-- Contact Form -->
-            <div class="animate-on-scroll">
-                <h2 class="text-2xl font-semibold text-white mb-4 inline-block border-b-2 border-teal-400 pb-2">Contact Me</h2>
-                <!-- Contact Form -->
-                <form id="contact-form" class="space-y-4" onsubmit="return submitContactForm(event)">
-                    {% csrf_token %}
-                    <div>
-                        <label for="name" class="block text-sm font-medium text-gray-300">Name</label>
-                        <input type="text" id="name" name="name" required
-                               class="mt-1 block w-full px-3 py-2 bg-gray-700 dark:bg-gray-800 border border-gray-600 dark:border-gray-700 rounded-md text-white
-                               focus:outline-none focus:ring-2 focus:ring-teal-400 hover:border-teal-400 transition-all duration-300 shadow-inner">
-                    </div>
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-gray-300">Email</label>
-                        <input type="email" id="email" name="email" required
-                               class="mt-1 block w-full px-3 py-2 bg-gray-700 dark:bg-gray-800 border border-gray-600 dark:border-gray-700 rounded-md text-white
-                               focus:outline-none focus:ring-2 focus:ring-teal-400 hover:border-teal-400 transition-all duration-300 shadow-inner">
-                    </div>
-                    <div>
-                        <label for="message" class="block text-sm font-medium text-gray-300">Message</label>
-                        <textarea id="message" name="message" rows="3" required
-                                  class="mt-1 block w-full px-3 py-2 bg-gray-700 dark:bg-gray-800 border border-gray-600 dark:border-gray-700 rounded-md text-white
-                                  focus:outline-none focus:ring-2 focus:ring-teal-400 hover:border-teal-400 transition-all duration-300 shadow-inner"></textarea>
-                    </div>
-                    <div>
-                        <button type="submit"
-                                class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md
-                                shadow-lg hover:shadow-xl text-sm font-medium text-white bg-gradient-to-r from-teal-500 to-blue-600 dark:from-teal-600 dark:to-blue-700 hover:from-teal-400 hover:to-blue-500 dark:hover:from-teal-500 dark:hover:to-blue-600
-                                focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-400
-                                transform hover:scale-105 transition-all duration-300">
-                            Send Message
-                        </button>
-                    </div>
-                    <div id="form-status" class="text-center hidden"></div>
-                </form>
-
-                <!-- Only shown if JavaScript is disabled -->
-                <noscript>
-                    <p class="mt-4">Please enable JavaScript to use the contact form, or email me directly at:
-                       <a href="mailto:pranj999@gmail.com" class="text-teal-400 hover:text-teal-300">pranj999 [at] gmail [dot] com</a>
-                    </p>
-                </noscript>
-            </div>
         </div>
 
-        <div class="mt-8 pt-6 border-t border-gray-700 text-center text-sm text-gray-400">
+        <!-- Copyright -->
+        <div class="mt-12 pt-6 border-t border-gray-700 text-center text-sm text-gray-400">
             <p>&copy; {% now "Y" %} Pranjal Patel. All rights reserved.</p>
             <p class="mt-2">Built with Django and Tailwind CSS</p>
         </div>
     </div>
 </footer>
-
-<script>
-    function submitContactForm(event) {
-        event.preventDefault();
-
-        // Get form elements
-        const form = document.getElementById('contact-form');
-        const formStatus = document.getElementById('form-status');
-
-        // Show loading state
-        formStatus.textContent = "Sending message...";
-        formStatus.classList.remove('hidden', 'text-red-500', 'text-green-500');
-        formStatus.classList.add('text-white');
-
-        // Collect form data
-        const formData = new FormData(form);
-
-        // Send data to the backend
-        fetch('/contact/submit/', {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest',
-            }
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data.success) {
-                formStatus.textContent = "Message sent successfully! I'll get back to you soon.";
-                formStatus.classList.remove('text-white', 'text-red-500');
-                formStatus.classList.add('text-green-400');
-                form.reset();
-            } else {
-                formStatus.textContent = data.error || "There was an error sending your message. Please try again.";
-                formStatus.classList.remove('text-white', 'text-green-500');
-                formStatus.classList.add('text-red-500');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            formStatus.textContent = "There was an error sending your message. Please try again.";
-            formStatus.classList.remove('text-white', 'text-green-500');
-            formStatus.classList.add('text-red-500');
-        });
-
-        return false;
-    }
-</script>

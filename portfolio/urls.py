@@ -12,7 +12,6 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
     path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
-    path('contact/submit/', views.contact_form, name='contact_form'),
 ]
 
 # Custom error handlers

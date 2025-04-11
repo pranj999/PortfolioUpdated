@@ -107,3 +107,24 @@ WARNING 2025-04-12 00:26:12,729 basehttp "GET /static/css/main.min.css HTTP/1.1"
 INFO 2025-04-12 00:26:12,729 basehttp "GET /static/js/movetop.js HTTP/1.1" 304 0
 INFO 2025-04-12 00:33:46,753 basehttp "GET / HTTP/1.1" 200 66364
 WARNING 2025-04-12 00:33:46,889 basehttp "GET /static/css/main.min.css HTTP/1.1" 404 1862
+INFO 2025-04-12 00:53:22,002 autoreload C:\Users\pranj\PycharmProjects\Portfolio\firstpage\views.py changed, reloading.
+INFO 2025-04-12 00:53:24,135 autoreload Watching for file changes with StatReloader
+INFO 2025-04-12 00:53:48,049 autoreload C:\Users\pranj\PycharmProjects\Portfolio\portfolio\urls.py changed, reloading.
+INFO 2025-04-12 00:53:49,324 autoreload Watching for file changes with StatReloader
+INFO 2025-04-12 00:54:04,495 autoreload C:\Users\pranj\PycharmProjects\Portfolio\portfolio\settings.py changed, reloading.
+INFO 2025-04-12 00:54:06,130 autoreload Watching for file changes with StatReloader
+INFO 2025-04-12 00:54:16,799 autoreload C:\Users\pranj\PycharmProjects\Portfolio\portfolio\sitemap.py changed, reloading.
+INFO 2025-04-12 00:54:18,456 autoreload Watching for file changes with StatReloader
+INFO 2025-04-12 00:54:40,323 basehttp "GET / HTTP/1.1" 200 60943
+WARNING 2025-04-12 00:54:40,430 basehttp "GET /static/css/main.min.css HTTP/1.1" 404 1862
+INFO 2025-04-12 00:59:42,872 basehttp "GET / HTTP/1.1" 200 61393
+WARNING 2025-04-12 00:59:42,944 basehttp "GET /static/css/main.min.css HTTP/1.1" 404 1862
+INFO 2025-04-12 00:59:45,650 basehttp "GET / HTTP/1.1" 200 61393
+WARNING 2025-04-12 00:59:45,703 basehttp "GET /static/css/main.min.css HTTP/1.1" 404 1862
+INFO 2025-04-12 00:59:55,829 basehttp "GET / HTTP/1.1" 200 61393
+WARNING 2025-04-12 00:59:55,888 basehttp "GET /static/css/main.min.css HTTP/1.1" 404 1862
+INFO 2025-04-12 01:03:16,601 basehttp "GET / HTTP/1.1" 200 61393
+WARNING 2025-04-12 01:03:16,657 basehttp "GET /static/css/main.min.css HTTP/1.1" 404 1862
+INFO 2025-04-12 01:03:17,613 basehttp "GET / HTTP/1.1" 200 61393
+WARNING 2025-04-12 01:03:17,682 basehttp "GET /static/css/main.min.css HTTP/1.1" 404 1862
+INFO 2025-04-12 01:12:21,312 basehttp "GET / HTTP/1.1" 200 61379
