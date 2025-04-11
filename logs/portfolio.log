@@ -101,3 +101,9 @@ INFO 2025-04-11 19:39:55,034 basehttp "GET / HTTP/1.1" 200 66364
 WARNING 2025-04-11 19:39:55,076 basehttp "GET /static/css/main.min.css HTTP/1.1" 404 1862
 INFO 2025-04-11 19:40:09,637 basehttp "GET / HTTP/1.1" 200 66364
 WARNING 2025-04-11 19:40:09,682 basehttp "GET /static/css/main.min.css HTTP/1.1" 404 1862
+INFO 2025-04-12 00:26:03,453 autoreload Watching for file changes with StatReloader
+INFO 2025-04-12 00:26:12,691 basehttp "GET / HTTP/1.1" 200 66364
+WARNING 2025-04-12 00:26:12,729 basehttp "GET /static/css/main.min.css HTTP/1.1" 404 1862
+INFO 2025-04-12 00:26:12,729 basehttp "GET /static/js/movetop.js HTTP/1.1" 304 0
+INFO 2025-04-12 00:33:46,753 basehttp "GET / HTTP/1.1" 200 66364
+WARNING 2025-04-12 00:33:46,889 basehttp "GET /static/css/main.min.css HTTP/1.1" 404 1862
