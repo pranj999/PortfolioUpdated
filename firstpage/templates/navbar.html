@@ -22,6 +22,7 @@
         padding: 0.5rem 0.75rem;
         margin: 0 0.25rem;
         font-weight: 500;
+        opacity: 0; /* Start invisible for animation */
     }
 
     /* Underline animation for nav links */
@@ -46,6 +47,19 @@
         display: flex;
         align-items: center;
         gap: 0.75rem;
+        opacity: 0; /* Start invisible for animation */
+    }
+
+    /* Indicator dot for active link */
+    .nav-indicator {
+        position: absolute;
+        bottom: -2px;
+        height: 2px;
+        background-color: #2dd4bf;
+        border-radius: 1px;
+        pointer-events: none;
+        opacity: 0;
+        transform-origin: left;
     }
 
     /* Responsive adjustments */
@@ -67,7 +81,7 @@
     <div class="container mx-auto px-4 py-4">
         <div class="flex flex-wrap items-center justify-between">
             <!-- Logo and Heading -->
-            <div class="logo-container">
+            <div class="logo-container" id="navbar-logo">
                 <img src="{% static 'favicon1.png' %}" alt="Pranjal Patel Logo" class="w-6 h-6 rounded-md shadow-md hover:shadow-lg transition-all duration-300">
                 <h1 class="font-semibold text-teal-400 text-xl hover:text-teal-300 transition-colors duration-300">
                     <a href="/" aria-label="Pranjal Patel Home Page">Pranjal Patel</a>
@@ -75,7 +89,7 @@
             </div>
 
             <!-- Navigation Links -->
-            <nav class="flex items-center flex-wrap nav-items space-x-1 md:space-x-2 lg:space-x-4">
+            <nav class="flex items-center flex-wrap nav-items space-x-1 md:space-x-2 lg:space-x-4 relative">
                 <a href="/" class="nav-link text-teal-400 hover:text-teal-300 transition-colors duration-300" aria-current="page">Home</a>
                 <a href="#about" class="nav-link text-teal-400 hover:text-teal-300 transition-colors duration-300">About</a>
                 <a href="#experience" class="nav-link text-teal-400 hover:text-teal-300 transition-colors duration-300">Experience</a>
@@ -83,28 +97,64 @@
                 <a href="#education" class="nav-link text-teal-400 hover:text-teal-300 transition-colors duration-300">Education</a>
                 <a href="https://github.com/pranj999/pranj999/blob/main/Pranjal_Patel_March2025.pdf"
                    target="_blank" rel="noopener noreferrer"
-                   class="ml-2 px-4 py-2 bg-gradient-to-r from-teal-500 to-blue-600 text-white font-medium rounded-full text-sm
+                   class="ml-2 px-4 py-2 bg-gradient-to-r from-teal-500 to-blue-600 text-white font-medium rounded-full text-sm nav-link resume-btn
                           transition-all duration-300 hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
                    <i class="fas fa-file-download mr-1"></i><span class="hidden sm:inline">Resume</span>
                 </a>
+
+                <!-- Animated indicator for active link -->
+                <div class="nav-indicator" id="nav-indicator"></div>
             </nav>
         </div>
     </div>
 </div>
 
+<!-- Add anime.js from CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
 <script>
-    // Add background to navbar on scroll
     document.addEventListener('DOMContentLoaded', function() {
         const navbar = document.getElementById('navbar');
         const navLinks = document.querySelectorAll('.nav-link');
+        const navLogo = document.getElementById('navbar-logo');
+        const navIndicator = document.getElementById('nav-indicator');
 
+        // Initial animations when page loads
+        anime.timeline({
+            easing: 'easeOutExpo'
+        })
+        .add({
+            targets: navLogo,
+            opacity: [0, 1],
+            translateY: ['-20px', '0px'],
+            duration: 800
+        })
+        .add({
+            targets: '.nav-link',
+            opacity: [0, 1],
+            translateY: ['-20px', '0px'],
+            delay: anime.stagger(100),
+            duration: 600
+        }, '-=400');
+
+        // Function to update navbar style on scroll
         function updateNavbar() {
             if (window.scrollY > 50) {
-                navbar.classList.add('bg-gray-900', 'bg-opacity-90', 'shadow-md');
-                navbar.classList.remove('bg-transparent');
+                anime({
+                    targets: navbar,
+                    backgroundColor: 'rgba(17, 24, 39, 0.9)', // bg-gray-900 with opacity
+                    boxShadow: ['0 0 0 rgba(0,0,0,0)', '0 4px 6px rgba(0,0,0,0.1)'],
+                    duration: 300,
+                    easing: 'easeOutQuad'
+                });
             } else {
-                navbar.classList.remove('bg-gray-900', 'bg-opacity-90', 'shadow-md');
-                navbar.classList.add('bg-transparent');
+                anime({
+                    targets: navbar,
+                    backgroundColor: 'rgba(0, 0, 0, 0)',
+                    boxShadow: ['0 4px 6px rgba(0,0,0,0.1)', '0 0 0 rgba(0,0,0,0)'],
+                    duration: 300,
+                    easing: 'easeOutQuad'
+                });
             }
         }
 
@@ -114,11 +164,35 @@
         // Add event listener for scroll
         window.addEventListener('scroll', updateNavbar);
 
+        // Animated indicator for active link
+        function updateIndicator(link) {
+            const linkRect = link.getBoundingClientRect();
+            const navRect = navbar.getBoundingClientRect();
+
+            anime({
+                targets: navIndicator,
+                opacity: 1,
+                width: linkRect.width,
+                left: linkRect.left - navRect.left,
+                duration: 600,
+                easing: 'easeOutExpo'
+            });
+        }
+
+        // Handle initial active link
+        function setInitialActiveLink() {
+            const activeLink = document.querySelector('.nav-link.active') || navLinks[0];
+            if (activeLink) {
+                updateIndicator(activeLink);
+            }
+        }
+
         // Active link highlighting based on scroll position
         const sections = document.querySelectorAll('section[id]');
 
         function highlightNavLink() {
             let scrollPosition = window.scrollY + 150; // Offset for navbar
+            let currentSection = null;
 
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
@@ -132,6 +206,7 @@
                         const href = link.getAttribute('href');
                         if(href === `#${sectionId}`) {
                             link.classList.add('active', 'text-white');
+                            currentSection = link;
                         }
                     });
                 }
@@ -143,13 +218,91 @@
                 if (homeLink) {
                     navLinks.forEach(link => link.classList.remove('active', 'text-white'));
                     homeLink.classList.add('active', 'text-white');
+                    currentSection = homeLink;
                 }
+            }
+
+            // Update the indicator position
+            if (currentSection) {
+                updateIndicator(currentSection);
             }
         }
 
         window.addEventListener('scroll', highlightNavLink);
 
+        // Set initial active link with animation
+        setTimeout(setInitialActiveLink, 1000);
+
         // Initial highlight
         highlightNavLink();
+
+        // Add hover effect for nav links
+        navLinks.forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                if (!this.classList.contains('active')) {
+                    anime({
+                        targets: this,
+                        scale: 1.05,
+                        duration: 300,
+                        easing: 'easeOutQuad'
+                    });
+                }
+            });
+
+            link.addEventListener('mouseleave', function() {
+                if (!this.classList.contains('active')) {
+                    anime({
+                        targets: this,
+                        scale: 1,
+                        duration: 300,
+                        easing: 'easeOutQuad'
+                    });
+                }
+            });
+        });
+
+        // Add special animation for resume button
+        const resumeBtn = document.querySelector('.resume-btn');
+        resumeBtn.addEventListener('mouseenter', function() {
+            anime({
+                targets: this,
+                scale: 1.1,
+                rotate: [0, 2, -2, 0],
+                duration: 600,
+                easing: 'easeOutElastic(1, .5)'
+            });
+        });
+
+        resumeBtn.addEventListener('mouseleave', function() {
+            anime({
+                targets: this,
+                scale: 1,
+                duration: 300,
+                easing: 'easeOutQuad'
+            });
+        });
+    });
+
+    // Function to animate when clicking nav links
+    document.addEventListener('click', function(e) {
+        const target = e.target.closest('.nav-link');
+        if (target && target.getAttribute('href').startsWith('#')) {
+            e.preventDefault();
+            const targetId = target.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+                const navbarHeight = document.getElementById('navbar').offsetHeight;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - navbarHeight;
+
+                // Smooth scroll animation
+                anime({
+                    targets: document.scrollingElement,
+                    scrollTop: targetPosition,
+                    duration: 800,
+                    easing: 'easeInOutQuad'
+                });
+            }
+        }
     });
 </script>

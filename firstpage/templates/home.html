@@ -8,38 +8,198 @@
 {% block content %}
 <span id="skip-to-content"></span>
 <!-- Hero Section -->
-<section class="relative py-20 md:py-32 overflow-hidden bg-gradient-to-b from-transparent to-gray-900 dark:from-transparent dark:to-gray-900 backdrop-filter backdrop-blur-sm" role="banner">
+{% load static %}
+
+<!-- Hero Section with anime.js animations -->
+<section class="relative py-20 md:py-32 overflow-hidden bg-gradient-to-b from-transparent to-gray-900 dark:from-transparent dark:to-gray-900 backdrop-filter backdrop-blur-sm" role="banner" id="hero-section">
+    <!-- Animated stars background -->
+    <div class="absolute inset-0 overflow-hidden" id="stars-container">
+        <!-- Stars will be added dynamically via JavaScript -->
+    </div>
+
     <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
-        <div class="md:w-1/2 mb-10 md:mb-0">
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-on-scroll">
+        <div class="md:w-1/2 hero-content">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 opacity-0" id="hero-title">
                 <span class="block text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-blue-500 to-purple-600">
                     Hello Universe!
                 </span>
                 <span class="text-white">I'm Pranjal</span>
             </h1>
-            <p class="text-xl md:text-2xl text-gray-300 mb-8 animate-on-scroll" style="animation-delay: 0.2s;">
+            <p class="text-xl md:text-2xl text-gray-300 mb-8 opacity-0" id="hero-subtitle">
                 Data Analyst with expertise in
-                <span class="text-teal-400">SQL, Python</span> and
-                <span class="text-teal-400">data visualization</span>.
+                <span class="text-teal-400 skill-highlight" id="skill-sql">SQL</span>,
+                <span class="text-teal-400 skill-highlight" id="skill-python">Python</span> and
+                <span class="text-teal-400 skill-highlight" id="skill-dataviz">data visualization</span>.
             </p>
-            <div class="flex flex-wrap gap-4 animate-on-scroll" style="animation-delay: 0.4s;">
-                <a href="#about" class="px-6 py-3 bg-gradient-to-r from-teal-500 to-blue-600 text-white font-medium rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500" aria-label="Learn more about Pranjal Patel">
-                    Learn More
-                </a>
-                <a href="#contact" class="px-6 py-3 bg-transparent border-2 border-teal-400 text-teal-400 font-medium rounded-full transition-all duration-300 hover:bg-teal-400 hover:text-white hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-400">
-                    Get In Touch
-                </a>
-            </div>
+            <!-- Buttons removed as requested -->
         </div>
-        <div class="md:w-2/5 flex justify-center animate-on-scroll" style="animation-delay: 0.3s;">
+        <div class="md:w-2/5 flex justify-center opacity-0" id="profile-container">
             <div class="relative group">
-                <div class="absolute -inset-1 bg-gradient-to-r from-teal-500 to-purple-600 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-                <img src="{% static 'profile2.jpg' %}" alt="Pranjal Patel - Data Analyst" class="relative rounded-full w-64 h-64 md:w-80 md:h-80 object-cover shadow-2xl" loading="eager" width="320" height="320">
+                <div class="absolute -inset-1 bg-gradient-to-r from-teal-500 to-purple-600 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200" id="profile-glow"></div>
+                <img src="{% static 'profile2.jpg' %}" alt="Pranjal Patel - Data Analyst" class="relative rounded-full w-64 h-64 md:w-80 md:h-80 object-cover shadow-2xl" loading="eager" width="320" height="320" id="profile-image">
             </div>
         </div>
     </div>
 </section>
 
+<!-- Add anime.js (if not already included in base template) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Create animated stars background
+    const starsContainer = document.getElementById('stars-container');
+    const starCount = 100; // Number of stars
+
+    for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.position = 'absolute';
+        star.style.width = `${Math.random() * 3 + 1}px`;
+        star.style.height = star.style.width;
+        star.style.backgroundColor = `rgba(255, 255, 255, ${Math.random() * 0.7 + 0.3})`;
+        star.style.borderRadius = '50%';
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.opacity = Math.random();
+        starsContainer.appendChild(star);
+    }
+
+    // Animate stars twinkling
+    anime({
+        targets: '.star',
+        opacity: [
+            { value: 0.1, duration: 700, easing: 'easeInOutQuad' },
+            { value: 1, duration: 700, easing: 'easeInOutQuad' }
+        ],
+        scale: [
+            { value: 0.8, duration: 700, easing: 'easeInOutQuad' },
+            { value: 1, duration: 700, easing: 'easeInOutQuad' }
+        ],
+        delay: anime.stagger(200, {grid: [16, 7], from: 'random'}),
+        loop: true,
+        direction: 'alternate'
+    });
+
+    // Hero section entrance animations
+    const heroTimeline = anime.timeline({
+        easing: 'easeOutExpo',
+        duration: 800
+    });
+
+    // Animate title
+    heroTimeline.add({
+        targets: '#hero-title',
+        opacity: [0, 1],
+        translateY: [50, 0],
+        duration: 1200
+    })
+
+    // Animate subtitle
+    .add({
+        targets: '#hero-subtitle',
+        opacity: [0, 1],
+        translateY: [30, 0],
+        duration: 1000
+    }, '-=800')
+
+    // Animate profile picture
+    .add({
+        targets: '#profile-container',
+        opacity: [0, 1],
+        scale: [0.8, 1],
+        rotateZ: [5, 0],
+        duration: 1200
+    }, '-=800')
+
+    // Animate profile glow
+    .add({
+        targets: '#profile-glow',
+        opacity: [0, 0.75],
+        scale: [0.9, 1],
+        duration: 800
+    }, '-=600');
+
+    // Animate individual skill highlights
+    anime({
+        targets: '.skill-highlight',
+        scale: [1, 1.15, 1],
+        opacity: [0.7, 1, 0.7],
+        duration: 2000,
+        delay: anime.stagger(2000),
+        loop: true,
+        easing: 'easeInOutSine'
+    });
+
+    // Add subtle floating animation to profile
+    anime({
+        targets: '#profile-container',
+        translateY: ['0px', '-10px', '0px'],
+        duration: 4000,
+        direction: 'alternate',
+        loop: true,
+        easing: 'easeInOutSine'
+    });
+
+    // Add interactive animation on hover for profile
+    const profileImage = document.getElementById('profile-image');
+    profileImage.addEventListener('mouseenter', () => {
+        anime({
+            targets: '#profile-glow',
+            opacity: 1,
+            scale: 1.05,
+            duration: 500,
+            easing: 'easeOutQuad'
+        });
+        anime({
+            targets: '#profile-image',
+            scale: 1.05,
+            duration: 500,
+            easing: 'easeOutQuad'
+        });
+    });
+
+    profileImage.addEventListener('mouseleave', () => {
+        anime({
+            targets: '#profile-glow',
+            opacity: 0.75,
+            scale: 1,
+            duration: 500,
+            easing: 'easeOutQuad'
+        });
+        anime({
+            targets: '#profile-image',
+            scale: 1,
+            duration: 500,
+            easing: 'easeOutQuad'
+        });
+    });
+
+    // Add parallax effect on mouse move
+    const heroSection = document.getElementById('hero-section');
+    heroSection.addEventListener('mousemove', (e) => {
+        const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+        const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+
+        anime({
+            targets: '#profile-container',
+            translateX: xAxis,
+            translateY: yAxis,
+            duration: 400,
+            easing: 'easeOutQuad'
+        });
+
+        // Subtle parallax for text elements
+        anime({
+            targets: ['#hero-title', '#hero-subtitle'],
+            translateX: xAxis / 3,
+            translateY: yAxis / 3,
+            duration: 400,
+            easing: 'easeOutQuad'
+        });
+    });
+});
+</script>
 <!-- About Section -->
 <section id="about" class="py-20 bg-gray-100 dark:bg-gray-800 dark:text-gray-200 transition-all duration-300">
     <div class="container mx-auto px-4">
