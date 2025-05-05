@@ -174,3 +174,10 @@ INFO 2025-04-17 00:22:31,481 basehttp "GET / HTTP/1.1" 200 62001
 INFO 2025-04-17 00:22:31,594 basehttp "GET /static/js/movetop.js HTTP/1.1" 304 0
 INFO 2025-04-17 00:43:08,865 basehttp "GET / HTTP/1.1" 200 67178
 INFO 2025-04-17 01:22:28,105 basehttp "GET / HTTP/1.1" 200 71369
+INFO 2025-04-28 10:16:57,759 autoreload Watching for file changes with StatReloader
+INFO 2025-04-28 10:16:58,970 basehttp code 400, message Bad request version ('תת\x13\x01\x13\x02\x13\x03ְ+ְ/ְ,ְ0ּ©ּ¨ְ\x13ְ\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x063')
+ERROR 2025-04-28 10:16:58,971 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-04-28 10:16:58,973 basehttp code 400, message Bad request version ('\x02h2\x08http/1.1\x00+\x00\x07\x06÷÷\x03\x04\x03\x03\x00\x12\x00\x00\x00\x1b\x00\x03\x02\x00\x02\x00')
+ERROR 2025-04-28 10:16:58,975 basehttp You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-04-28 10:17:08,669 basehttp "GET / HTTP/1.1" 200 71369
+INFO 2025-04-28 10:17:08,780 basehttp "GET /static/js/movetop.js HTTP/1.1" 304 0
